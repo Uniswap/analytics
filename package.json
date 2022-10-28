@@ -35,6 +35,10 @@
     "node": ">=14"
   },
   "devDependencies": {
+    "@types/node": "^18.11.7",
     "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "@amplitude/analytics-browser": "^1.5.8"
   }
 }
