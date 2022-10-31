@@ -1,13 +1,22 @@
 {
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
     "root": true,
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-        "@typescript-eslint"
-    ],
     "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "prettier"
-    ]
+        "plugin:react-hooks/recommended",
+        "prettier/@typescript-eslint",
+        "plugin:prettier/recommended"
+    ],
+    "overrides": [],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": "off"
+    }
 }

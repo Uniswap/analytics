@@ -9,8 +9,7 @@
         "declaration": true,
         "declarationMap": true,
         "allowSyntheticDefaultImports": true,
+        "jsx": "react-jsx",
     },
-    "files": [
-        "src/index.ts"
-    ]
+    "include": ["src/"]
 }

@@ -1,14 +1,17 @@
-export function helloWorld() {
-    const message = 'Hello World from my example modern npm package!';
-    return message;
-  }
-  
-  export function goodBye() {
-    const message = 'Goodbye from my example modern npm package!';
-    return message;
-  }
-  
-  export default {
-    helloWorld,
-    goodBye,
-  };
+export { Trace } from './analytics/Trace'
+export { TraceEvent } from './analytics/TraceEvent'
+
+export {
+  BROWSER,
+  CUSTOM_USER_PROPERTIES,
+  ElementName,
+  Event,
+  EventName,
+  ModalName,
+  PageName,
+  SWAP_PRICE_UPDATE_USER_RESPONSE,
+  SectionName,
+  WALLET_CONNECTION_RESULT,
+} from './analytics/constants'
+
+export { initializeAnalytics, sendAnalyticsEvent, user } from './analytics/index'
