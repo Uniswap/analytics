@@ -1,22 +1,26 @@
 import { Identify, identify, init, track } from '@amplitude/analytics-browser'
 import { isProductionEnv } from '../utils/env'
 
+const DUMMY_KEY = '00000000000000000000000000000000'
+
 /**
  * Initializes Amplitude with API key for project.
  *
  * Uniswap has two Amplitude projects: test and production. You must be a
  * member of the organization on Amplitude to view details.
  */
-export function initializeAnalytics(apiKey: string) {
+export function initializeAnalytics(proxyUrl: string) {
   init(
-    apiKey,
+    DUMMY_KEY,
     /* userId= */ undefined, // User ID should be undefined to let Amplitude default to Device ID
     /* options= */
     {
+      // Configure the SDK to work with alternate endpoint
+      serverUrl: proxyUrl,
       // Disable tracking of private user information by Amplitude
       trackingOptions: {
         // IP is being dropped before ingestion on Amplitude side, only being used to determine country.
-        ipAddress: isProductionEnv() ? false : true,
+        ipAddress: false,
         carrier: false,
         city: false,
         region: false,
