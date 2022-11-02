@@ -1,5 +1,5 @@
-export { Trace } from './analytics/Trace'
-export { TraceEvent } from './analytics/TraceEvent'
+export { Trace, ITraceContext, TraceContext, useTrace } from './analytics/Trace.js'
+export { TraceEvent } from './analytics/TraceEvent.js'
 
 export {
   BROWSER,
@@ -12,6 +12,6 @@ export {
   SWAP_PRICE_UPDATE_USER_RESPONSE,
   SectionName,
   WALLET_CONNECTION_RESULT,
-} from './analytics/constants'
+} from './analytics/constants.js'
 
-export { initializeAnalytics, sendAnalyticsEvent, user } from './analytics/index'
+export { initializeAnalytics, sendAnalyticsEvent, user } from './analytics/index.js'
