@@ -34,6 +34,8 @@ type TraceProps = {
 /**
  * Sends an analytics event on mount (if shouldLogImpression is set),
  * and propagates the context to child traces.
+ *
+ * It defaults to logging an EventName.PAGE_VIEWED if no `name` is provided.
  */
 export const Trace = memo(
   ({

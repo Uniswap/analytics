@@ -16,6 +16,11 @@ npm i --save @uniswap/analytics
 
 Make sure the environment variable `REACT_APP_STAGING` is set to `false` in production.
 
+## Release
+
+Releasing is performed manually using the [release](/.github/workflows/release.yaml) Github workflow.
+
+
 ## Documentation
 
 

@@ -35,7 +35,7 @@ export function sendAnalyticsEvent(eventName: string, eventProperties?: Record<s
   track(eventName, { ...eventProperties, origin })
 }
 
-type Value = string | number | boolean | string[] | number[]
+type UserValue = string | number | boolean | string[] | number[]
 
 /**
  * Class that exposes methods to mutate the User Model's properties in
@@ -58,11 +58,11 @@ class UserModel {
     identify(mutate(new Identify()))
   }
 
-  set(key: string, value: Value) {
+  set(key: string, value: UserValue) {
     this.call((event) => event.set(key, value))
   }
 
-  setOnce(key: string, value: Value) {
+  setOnce(key: string, value: UserValue) {
     this.call((event) => event.setOnce(key, value))
   }
 
