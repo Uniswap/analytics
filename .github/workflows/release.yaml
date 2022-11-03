@@ -8,21 +8,32 @@ on:
         required: false
         default: true
         type: boolean
-
 jobs:
   release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup
-      - run: yarn prepare
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-      - run: yarn lint
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Lint
+        run: yarn test
         if: success()
 
-      - run: yarn release --dry-run=${{ inputs.dry_run }}
-        if: success()
+      - name: Release
         env:
           NPM_CONFIG_USERCONFIG: /dev/null
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn release --dry-run=${{ inputs.dry_run }}
+        if: success()
