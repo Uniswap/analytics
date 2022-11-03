@@ -42,7 +42,7 @@ import { Trace, EventName, ModalName } from '@uniswap/analytics'
 ```
 Depending on the context that `<Trace/>` is used in, you may have to define new values for the enums that are passed in as arguments such: `Event`, `EventName`, `ModalName`, `ElementName`.
 
-Finally, there is a React component that wraps event callbacks with logging logic:
+There is a React component that wraps event callbacks with logging logic:
 ```js
 import { TraceEvent, EventName, ElementName } from '@uniswap/analytics'
 
@@ -50,6 +50,13 @@ import { TraceEvent, EventName, ElementName } from '@uniswap/analytics'
     <SomeButton onClick={onClickHandler}/>
 </TraceEvent>
 ``` 
+
+Finally, you can set properties about the user of the application:
+```js
+import { CUSTOM_USER_PROPERTIES, user } from 'analytics'
+
+user.set(CUSTOM_USER_PROPERTIES.DARK_MODE, isDarkMode)
+```
 
 ## Example Apps
 
