@@ -14,6 +14,8 @@ yarn add @uniswap/analytics
 npm i --save @uniswap/analytics
 ```
 
+Make sure the environment variable `REACT_APP_STAGING` is set to `false` in production.
+
 ## Documentation
 
 
