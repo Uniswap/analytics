@@ -9,9 +9,9 @@ const DUMMY_KEY = '00000000000000000000000000000000'
  * Uniswap has two Amplitude projects: test and production. You must be a
  * member of the organization on Amplitude to view details.
  */
-export function initializeAnalytics(proxyUrl: string) {
+export function initializeAnalytics(apiKey: string, proxyUrl: string) {
   init(
-    DUMMY_KEY,
+    apiKey,
     /* userId= */ undefined, // User ID should be undefined to let Amplitude default to Device ID
     /* options= */
     {
