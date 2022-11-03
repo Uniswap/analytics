@@ -1,6 +1,6 @@
 export enum WalletConnectionResult {
-  SUCCEEDED = 'Succeeded',
   FAILED = 'Failed',
+  SUCCEEDED = 'Succeeded',
 }
 
 export enum SwapPriceUpdateUserResponse {

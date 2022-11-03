@@ -16,7 +16,17 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
+    "plugins": [
+        "typescript-sort-keys"
+    ],
     "rules": {
+        "typescript-sort-keys/string-enum": [
+            "error",
+            "asc",
+            {
+                "caseSensitive": true
+            }
+        ],
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/naming-convention": [
             "warn",
@@ -27,14 +37,17 @@
                 ]
             }
         ],
-        "curly": ["warn", "all"],
+        "curly": [
+            "warn",
+            "all"
+        ],
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": [
             "error",
-            { 
-              "argsIgnorePattern": "_",
-              "varsIgnorePattern": "_",
-              "caughtErrorsIgnorePattern": "_"
+            {
+                "argsIgnorePattern": "_",
+                "varsIgnorePattern": "_",
+                "caughtErrorsIgnorePattern": "_"
             }
         ]
     }
