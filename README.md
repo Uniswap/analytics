@@ -17,7 +17,7 @@ npm i --save @uniswap/analytics
 ## Documentation
 
 
-The client should be initialized before it used. To initialize the client, pass in the url of the reverse proxy server:
+The client should be initialized before it is used. To initialize the client, pass in the url of the reverse proxy server:
 ```js
 import { initializeAnalytics } from '@uniswap/analytics'
 
@@ -31,7 +31,7 @@ import { sendAnalyticsEvent, EventName } from '@uniswap/analytics'
 sendAnalyticsEvent(EventName.EXPLORE_BANNER_CLICKED, {})
 ```
 
-There is also a built in React component that logs an event when it first mounted. You may use it as a wrapper:
+There is also a built in React component that logs an event when it is first mounted. You may use it as a wrapper:
 ```js
 import { Trace, EventName, ModalName } from '@uniswap/analytics'
 
