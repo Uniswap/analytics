@@ -15,6 +15,14 @@
         "types": "./lib/cjs/types/index.d.ts",
         "default": "./lib/cjs/index.js"
       }
+    },
+    "./constants": {
+      "import": {
+        "default": "./lib/esm/constants/index.js"
+      },
+      "require": {
+        "default": "./lib/cjs/constants/index.js"
+      }
     }
   },
   "files": [

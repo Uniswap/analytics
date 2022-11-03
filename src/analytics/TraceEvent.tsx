@@ -1,11 +1,11 @@
 import React, { Children, cloneElement, isValidElement, memo, PropsWithChildren, SyntheticEvent } from 'react'
 
 import { sendAnalyticsEvent } from '.'
-import { Event, EventName } from './constants'
+import { BrowserEvent, EventName } from '../constants/primitives'
 import { ITraceContext, Trace, TraceContext } from './Trace'
 
 type TraceEventProps = {
-  events: Event[]
+  events: BrowserEvent[]
   name: EventName
   properties?: Record<string, unknown>
   shouldLogImpression?: boolean
@@ -52,12 +52,12 @@ TraceEvent.displayName = 'TraceEvent'
 function getEventHandlers(
   child: React.ReactElement,
   traceContext: ITraceContext,
-  events: Event[],
+  events: BrowserEvent[],
   name: EventName,
   properties?: Record<string, unknown>,
   shouldLogImpression = true
 ) {
-  const eventHandlers: Partial<Record<Event, (e: SyntheticEvent<Element, Event>) => void>> = {}
+  const eventHandlers: Partial<Record<BrowserEvent, (e: SyntheticEvent<Element, BrowserEvent>) => void>> = {}
 
   for (const event of events) {
     eventHandlers[event] = (eventHandlerArgs: unknown) => {

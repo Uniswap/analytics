@@ -1,7 +1,8 @@
 import React, { createContext, memo, PropsWithChildren, useContext, useEffect, useMemo } from 'react'
 
 import { sendAnalyticsEvent } from '.'
-import { ElementName, EventName, ModalName, PageName, SectionName } from './constants'
+import { ElementName, ModalName, PageName, SectionName } from '../constants/trace'
+import { EventName } from '../constants/primitives'
 
 export interface ITraceContext {
   // Highest order context: eg Swap or Explore.
