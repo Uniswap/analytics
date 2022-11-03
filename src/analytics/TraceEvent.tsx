@@ -66,7 +66,9 @@ function getEventHandlers(
       child.props[event]?.apply(child, args)
 
       // augment handler with analytics logging
-      if (shouldLogImpression) sendAnalyticsEvent(name, { ...traceContext, ...properties, action: event })
+      if (shouldLogImpression) {
+        sendAnalyticsEvent(name, { ...traceContext, ...properties, action: event })
+      }
     }
   }
 
