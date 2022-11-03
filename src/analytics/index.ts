@@ -1,8 +1,6 @@
 import { Identify, identify, init, track } from '@amplitude/analytics-browser'
 import { isProductionEnv } from '../utils/env'
 
-const DUMMY_KEY = '00000000000000000000000000000000'
-
 /**
  * Initializes Amplitude with API key for project.
  *
