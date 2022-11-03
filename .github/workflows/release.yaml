@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  workflow_dispatch: # manually
+    inputs:
+      dry_run:
+        description: Skip publishing
+        required: false
+        default: true
+        type: boolean
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup
+      - run: yarn prepare
+
+      - run: yarn test
+        if: success()
+
+      - run: yarn test:e2e
+        if: success()
+        env:
+          JSON_RPC_PROVIDER: ${{ secrets.JSON_RPC_PROVIDER }}
+
+      - run: yarn release --dry-run=${{ inputs.dry_run }}
+        if: success()
+        env:
+          NPM_CONFIG_USERCONFIG: /dev/null
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

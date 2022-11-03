@@ -5,6 +5,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
   "version": "1.0.14",
   "exports": {
     ".": {
@@ -29,7 +34,8 @@
     "build:esm": "tsc -p ./tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
     "build:cjs": "tsc -p ./tsconfig.cjs.json",
     "prepack": "yarn run build",
-    "lint": "yarn eslint ."
+    "lint": "yarn eslint .",
+    "release": "semantic-release"
   },
   "author": "",
   "engines": {
