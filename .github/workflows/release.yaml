@@ -30,6 +30,10 @@ jobs:
         run: yarn lint
         if: success()
 
+      - name: Test
+        run: yarn test
+        if: success()
+
       - name: Release
         env:
           NPM_CONFIG_USERCONFIG: /dev/null
