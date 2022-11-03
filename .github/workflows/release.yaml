@@ -1,13 +1,13 @@
 name: Release
 
-on: push
-  # workflow_dispatch: # manually
-  #   inputs:
-  #     dry_run:
-  #       description: Skip publishing
-  #       required: false
-  #       default: true
-  #       type: boolean
+on:
+  workflow_dispatch: # manually
+    inputs:
+      dry_run:
+        description: Skip publishing
+        required: false
+        default: true
+        type: boolean
 jobs:
   release:
     name: Release
