@@ -20,6 +20,9 @@ Make sure the environment variable `REACT_APP_STAGING` is set to `false` in prod
 
 Releasing is performed manually using the [release](/.github/workflows/release.yaml) Github workflow.
 
+This repository uses [semantic-release](https://github.com/semantic-release/semantic-release) for the release process,
+which in turn uses the [Angular commit message suggestions](https://github.com/semantic-release/semantic-release) to identify the type of release.
+
 
 ## Documentation
 
