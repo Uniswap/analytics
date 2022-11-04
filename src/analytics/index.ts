@@ -7,7 +7,7 @@ import { isProductionEnv } from '../utils/env'
  * Uniswap has two Amplitude projects: test and production. You must be a
  * member of the organization on Amplitude to view details.
  */
-export function initializeAnalytics(apiKey: string, proxyUrl: string) {
+export function initializeAnalytics(apiKey: string, proxyUrl: string | undefined) {
   init(
     apiKey,
     /* userId= */ undefined, // User ID should be undefined to let Amplitude default to Device ID
