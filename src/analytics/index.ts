@@ -17,7 +17,6 @@ export function initializeAnalytics(apiKey: string, proxyUrl: string) {
       serverUrl: proxyUrl,
       // Disable tracking of private user information by Amplitude
       trackingOptions: {
-        // IP is being dropped before ingestion on Amplitude side, only being used to determine country.
         ipAddress: false,
         carrier: false,
         city: false,

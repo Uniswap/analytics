@@ -10,7 +10,6 @@ export enum PageName {
   TOKENS_PAGE = 'tokens-page',
   TOKEN_DETAILS_PAGE = 'token-details',
   VOTE_PAGE = 'vote-page',
-  // alphabetize additional page names.
 }
 
 /**
@@ -23,7 +22,6 @@ export enum SectionName {
   CURRENCY_OUTPUT_PANEL = 'swap-currency-output',
   NAVBAR_SEARCH = 'Navbar Search',
   WIDGET = 'widget',
-  // alphabetize additional section names.
 }
 
 /** Known modals for analytics purposes. */
@@ -31,7 +29,6 @@ export enum ModalName {
   CONFIRM_SWAP = 'confirm-swap-modal',
   NFT_TX_COMPLETE = 'nft-tx-complete-modal',
   TOKEN_SELECTOR = 'token-selector-modal',
-  // alphabetize additional modal names.
 }
 
 /**
@@ -59,5 +56,4 @@ export enum ElementName {
   SWAP_TOKENS_REVERSE_ARROW_BUTTON = 'swap-tokens-reverse-arrow-button',
   TOKEN_SELECTOR_ROW = 'token-selector-row',
   WALLET_TYPE_OPTION = 'wallet-type-option',
-  // alphabetize additional element names.
 }

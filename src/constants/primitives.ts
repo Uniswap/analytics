@@ -42,7 +42,6 @@ export enum EventName {
   WEB_VITALS = 'Web Vitals',
   WRAP_TOKEN_TXN_INVALIDATED = 'Wrap Token Transaction Invalidated',
   WRAP_TOKEN_TXN_SUBMITTED = 'Wrap Token Transaction Submitted',
-  // alphabetize additional event names.
 }
 
 /**
@@ -55,7 +54,6 @@ export enum BrowserEvent {
   onFocus = 'onFocus',
   onKeyPress = 'onKeyPress',
   onSelect = 'onSelect',
-  // alphabetize additional events.
 }
 
 export enum Browser {
