@@ -54,7 +54,7 @@ import { EventName, ModalName } from '@uniswap/analytics-events'
     <SomeComponent/>
 </Trace>
 ```
-Depending on the context that `<Trace/>` is used in, you may have to define new values in [@uniswap/analytics-events](https://www.npmjs.com/package/@uniswap/analytics) for the enums that are passed in as arguments such: `BrowserEvent`, `EventName`, `ModalName`, `ElementName`.
+Depending on the context that `<Trace/>` is used in, you may have to define new values in [@uniswap/analytics-events](https://www.npmjs.com/package/@uniswap/analytics-events) for the enums that are passed in as arguments such: `BrowserEvent`, `EventName`, `ModalName`, `ElementName`.
 
 There is a React component that wraps event callbacks with logging logic:
 ```js
