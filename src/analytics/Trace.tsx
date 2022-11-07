@@ -1,22 +1,22 @@
 import React, { createContext, memo, PropsWithChildren, useContext, useEffect, useMemo } from 'react'
 
 import { sendAnalyticsEvent } from '.'
-import { ElementName, ModalName, PageName, SectionName } from '../constants/trace'
-import { EventName } from '../constants/primitives'
+
+const DEFAULT_EVENT = 'PAGE_VIEWED'
 
 export interface ITraceContext {
   // Highest order context: eg Swap or Explore.
-  page?: PageName
+  page?: string
 
   // Enclosed section name. For contexts with modals, refers to the
   // section of the page from which the user triggered the modal.
-  section?: SectionName
+  section?: string
 
-  modal?: ModalName
+  modal?: string
 
   // Element name mostly used to identify events sources
   // Does not need to be unique given the higher order page and section.
-  element?: ElementName
+  element?: string
 }
 
 export const TraceContext = createContext<ITraceContext>({})
@@ -28,7 +28,7 @@ export function useTrace(trace?: ITraceContext): ITraceContext {
 
 type TraceProps = {
   shouldLogImpression?: boolean // whether to log impression on mount
-  name?: EventName
+  name?: string
   properties?: Record<string, unknown>
 } & ITraceContext
 
@@ -62,7 +62,7 @@ export const Trace = memo(
     useEffect(() => {
       if (shouldLogImpression) {
         const commitHash = process.env.REACT_APP_GIT_COMMIT_HASH
-        sendAnalyticsEvent(name ?? EventName.PAGE_VIEWED, {
+        sendAnalyticsEvent(name ?? DEFAULT_EVENT, {
           ...combinedProps,
           ...properties,
           git_commit_hash: commitHash,
