@@ -5,7 +5,7 @@ The `@uniswap/analytics` package is a [npm package](https://www.npmjs.com/packag
 
 ## Installation
 
-Install the widgets library via `npm` or `yarn`.
+Install via `npm` or `yarn`.
 
 ```js
 yarn add @uniswap/analytics
