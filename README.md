@@ -1,7 +1,9 @@
 # Uniswap Labs Analytics
 [![npm](https://img.shields.io/npm/v/@uniswap/analytics)](https://www.npmjs.com/package/@uniswap/analytics)
 
-The `@uniswap/analytics` package is a [npm package](https://www.npmjs.com/package/@uniswap/analytics) of React components and functions used to provide Analytics capability to Uniswap Labs products. 
+The `@uniswap/analytics` package is a [npm package](https://www.npmjs.com/package/@uniswap/analytics) of React components and functions used to provide Analytics capability to Uniswap Labs products.
+
+This package is intended to be used with the [@uniswap/analytics-events](https://www.npmjs.com/package/@uniswap/analytics) package, which provides the constant definitions used inside this package.
 
 ## Installation
 
@@ -36,25 +38,28 @@ initializeAnalytics(REVERSE_PROXY_URL)
 
 Before logging an event, make sure to add it under the `EventName` enum. To log an analytics event:
 ```js
-import { sendAnalyticsEvent, EventName } from '@uniswap/analytics'
+import { sendAnalyticsEvent } from '@uniswap/analytics'
+import { EventName } from '@uniswap/analytics-events'
 
 sendAnalyticsEvent(EventName.EXPLORE_BANNER_CLICKED, {})
 ```
 
 There is also a built in React component that logs an event when it is first mounted. You may use it as a wrapper:
 ```js
-import { Trace, EventName, ModalName } from '@uniswap/analytics'
+import { Trace } from '@uniswap/analytics'
+import { EventName, ModalName } from '@uniswap/analytics-events'
 
 
 <Trace name={EventName.TOKEN_SELECTOR_OPENED} modal={ModalName.TOKEN_SELECTOR}>
     <SomeComponent/>
 </Trace>
 ```
-Depending on the context that `<Trace/>` is used in, you may have to define new values for the enums that are passed in as arguments such: `Event`, `EventName`, `ModalName`, `ElementName`.
+Depending on the context that `<Trace/>` is used in, you may have to define new values in [@uniswap/analytics-events](https://www.npmjs.com/package/@uniswap/analytics) for the enums that are passed in as arguments such: `BrowserEvent`, `EventName`, `ModalName`, `ElementName`.
 
 There is a React component that wraps event callbacks with logging logic:
 ```js
-import { TraceEvent, EventName, ElementName } from '@uniswap/analytics'
+import { TraceEvent } from '@uniswap/analytics'
+import { EventName, ElementName } from '@uniswap/analytics-events'
 
 <TraceEvent events={[Event.onClick]} name={EventName.SWAP_MAX_TOKEN_AMOUNT_SELECTED} element={ElementName.MAX_TOKEN_AMOUNT_BUTTON}>
     <SomeButton onClick={onClickHandler}/>
@@ -63,7 +68,8 @@ import { TraceEvent, EventName, ElementName } from '@uniswap/analytics'
 
 Finally, you can set properties about the user of the application:
 ```js
-import { CUSTOM_USER_PROPERTIES, user } from 'analytics'
+import { user } from 'analytics'
+import { CustomUserProperties } from '@uniswap/analytics-events'
 
 user.set(CUSTOM_USER_PROPERTIES.DARK_MODE, isDarkMode)
 ```
