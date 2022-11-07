@@ -1,7 +1,8 @@
 import React, { createContext, memo, PropsWithChildren, useContext, useEffect, useMemo } from 'react'
 
 import { sendAnalyticsEvent } from '.'
-import { EventName } from '../constants/primitives'
+
+const DEFAULT_EVENT = 'PAGE_VIEWED'
 
 export interface ITraceContext {
   // Highest order context: eg Swap or Explore.
@@ -61,7 +62,7 @@ export const Trace = memo(
     useEffect(() => {
       if (shouldLogImpression) {
         const commitHash = process.env.REACT_APP_GIT_COMMIT_HASH
-        sendAnalyticsEvent(name ?? EventName.PAGE_VIEWED, {
+        sendAnalyticsEvent(name ?? DEFAULT_EVENT, {
           ...combinedProps,
           ...properties,
           git_commit_hash: commitHash,
