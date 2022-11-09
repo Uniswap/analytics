@@ -12,7 +12,7 @@ import { CustomTransport, OriginApplication } from './CustomTransport'
 export function initializeAnalytics(
   apiKey: string,
   proxyUrl: string | undefined,
-  originApplication: OriginApplication
+  originApplication: OriginApplication | undefined
 ) {
   init(
     apiKey,

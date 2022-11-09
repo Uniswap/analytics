@@ -5,7 +5,10 @@ export enum OriginApplication {
   DOCS = 'docs',
   INTERFACE = 'interface',
 }
-
+/**
+ * Allows us to set `x-origin-application` to correctly route
+ * the application to the correct Amplitude project
+ */
 export class CustomTransport extends BaseTransport implements Transport {
   private originApplication: OriginApplication | undefined
 
