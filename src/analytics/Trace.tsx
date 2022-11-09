@@ -62,7 +62,6 @@ export const Trace = memo(
     useEffect(() => {
       if (shouldLogImpression) {
         const commitHash = process.env.REACT_APP_GIT_COMMIT_HASH
-
         sendAnalyticsEvent(name ?? DEFAULT_EVENT, {
           ...combinedProps,
           ...properties,
