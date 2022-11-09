@@ -1,6 +1,5 @@
 {
   "name": "@uniswap/analytics",
-  "version": "1.0.51",
   "description": "Uniswap analytics",
   "license": "MIT",
   "publishConfig": {
