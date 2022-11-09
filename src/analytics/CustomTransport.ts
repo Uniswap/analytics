@@ -8,11 +8,13 @@ export enum OriginApplication {
 /**
  * Allows us to set `x-origin-application` to correctly route
  * the application to the correct Amplitude project
+ *
+ * @param originApplication Name of the application consuming the package. Used to route events to the correct project.
  */
 export class CustomTransport extends BaseTransport implements Transport {
-  private originApplication: OriginApplication | undefined
+  private originApplication: OriginApplication
 
-  constructor(originApplication: OriginApplication | undefined) {
+  constructor(originApplication: OriginApplication) {
     super()
     this.originApplication = originApplication
   }
@@ -23,7 +25,7 @@ export class CustomTransport extends BaseTransport implements Transport {
     }
     const options: RequestInit = {
       headers: {
-        'x-origin-application': this.originApplication ?? OriginApplication.INTERFACE,
+        'x-origin-application': this.originApplication,
         'Content-Type': 'application/json',
         Accept: '*/*',
       },

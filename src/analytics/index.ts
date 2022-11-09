@@ -12,12 +12,11 @@ import { CustomTransport, OriginApplication } from './CustomTransport'
  * @param apiKey API key of the application. Currently not utilized in order to keep keys private.
  * @param proxyUrl URL of the proxy server.
  * @param originApplication Name of the application consuming the package. Used to route events to the correct project.
- *
  */
 export function initializeAnalytics(
   apiKey: string,
-  proxyUrl: string | undefined,
-  originApplication: OriginApplication | undefined
+  originApplication: OriginApplication,
+  proxyUrl: string | undefined
 ) {
   init(
     apiKey,
