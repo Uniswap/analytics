@@ -1,13 +1,23 @@
 import { Identify, identify, init, track } from '@amplitude/analytics-browser'
 import { isProductionEnv } from '../utils/env'
 
+import { CustomTransport, OriginApplication } from './CustomTransport'
+
 /**
  * Initializes Amplitude with API key for project.
  *
  * Uniswap has two Amplitude projects: test and production. You must be a
  * member of the organization on Amplitude to view details.
+ *
+ * @param apiKey API key of the application. Currently not utilized in order to keep keys private.
+ * @param proxyUrl URL of the proxy server.
+ * @param originApplication Name of the application consuming the package. Used to route events to the correct project.
  */
-export function initializeAnalytics(apiKey: string, proxyUrl: string | undefined) {
+export function initializeAnalytics(
+  apiKey: string,
+  originApplication: OriginApplication,
+  proxyUrl: string | undefined
+) {
   init(
     apiKey,
     /* userId= */ undefined, // User ID should be undefined to let Amplitude default to Device ID
@@ -15,6 +25,8 @@ export function initializeAnalytics(apiKey: string, proxyUrl: string | undefined
     {
       // Configure the SDK to work with alternate endpoint
       serverUrl: proxyUrl,
+      // Configure the SDK to set the x-application-origin header
+      transportProvider: new CustomTransport(originApplication),
       // Disable tracking of private user information by Amplitude
       trackingOptions: {
         ipAddress: false,
