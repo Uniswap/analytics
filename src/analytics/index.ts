@@ -1,7 +1,7 @@
 import { Identify, identify, init, track } from '@amplitude/analytics-browser'
 import { isProductionEnv } from '../utils/env'
 
-import { CustomTransport, OriginApplication } from './CustomTransport'
+import { ApplicationTransport, OriginApplication } from './ApplicationTransport'
 
 /**
  * Initializes Amplitude with API key for project.
@@ -26,7 +26,7 @@ export function initializeAnalytics(
       // Configure the SDK to work with alternate endpoint
       serverUrl: proxyUrl,
       // Configure the SDK to set the x-application-origin header
-      transportProvider: new CustomTransport(originApplication),
+      transportProvider: new ApplicationTransport(originApplication),
       // Disable tracking of private user information by Amplitude
       trackingOptions: {
         ipAddress: false,
@@ -37,7 +37,7 @@ export function initializeAnalytics(
       },
       // Configure the SDK to use batched events (to reduce network contention)
       // by grouping events from the same render cycle
-      flushIntervalMillis: 0,
+      flushIntervalMillis: 50, // assuming 20fps renders
       useBatch: true,
     }
   )

@@ -5,28 +5,26 @@ export enum OriginApplication {
   DOCS = 'docs',
   INTERFACE = 'interface',
 }
+
 /**
+ * A custom Transport layer that sets `x-origin-application` to route the application to its Amplitude project
  *
- * Allows us to set `x-origin-application` to correctly route
- * the application to the correct Amplitude project
- *
- * @param originApplication Name of the application consuming the package. Used to route events to the correct project.
+ * @param originApplication Name of the application consuming the package. Used to route events to its project.
  *
  * See example here: https://github.com/amplitude/Amplitude-TypeScript/blob/main/packages/analytics-client-common/src/transports/fetch.ts
  */
-export class CustomTransport extends BaseTransport implements Transport {
-  private originApplication: OriginApplication
-
-  constructor(originApplication: OriginApplication) {
+export class ApplicationTransport extends BaseTransport implements Transport {
+  constructor(private originApplication: OriginApplication) {
     super()
-    this.originApplication = originApplication
-  }
-  async send(serverUrl: string, payload: Payload): Promise<Response | null> {
+
     /* istanbul ignore if */
     if (typeof fetch === 'undefined') {
       throw new Error('FetchTransport is not supported')
     }
-    const options: RequestInit = {
+  }
+
+  async send(serverUrl: string, payload: Payload): Promise<Response | null> {
+    const request: RequestInit = {
       headers: {
         'x-origin-application': this.originApplication,
         'Content-Type': 'application/json',
@@ -36,8 +34,8 @@ export class CustomTransport extends BaseTransport implements Transport {
       body: JSON.stringify(payload),
       method: 'POST',
     }
-    const response = await fetch(serverUrl, options)
-    const responsePayload: Record<string, unknown> = await response.json()
-    return this.buildResponse(responsePayload)
+    const response = await fetch(serverUrl, request)
+    const responseJSON: Record<string, unknown> = await response.json()
+    return this.buildResponse(responseJSON)
   }
 }
