@@ -32,6 +32,7 @@ export class CustomTransport extends BaseTransport implements Transport {
         'Content-Type': 'application/json',
         Accept: '*/*',
       },
+      keepalive: true, // allow the request to outlive the page
       body: JSON.stringify(payload),
       method: 'POST',
     }
