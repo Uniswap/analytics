@@ -36,8 +36,7 @@ export class CustomTransport extends BaseTransport implements Transport {
       method: 'POST',
     }
     const response = await fetch(serverUrl, options)
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const responsePayload: Record<string, any> = await response.json()
+    const responsePayload: Record<string, unknown> = await response.json()
     return this.buildResponse(responsePayload)
   }
 }
