@@ -3,6 +3,8 @@ import { isProductionEnv } from '../utils/env'
 
 import { CustomTransport, OriginApplication } from './CustomTransport'
 
+let isInitialized = false
+
 /**
  * Initializes Amplitude with API key for project.
  *
@@ -18,6 +20,11 @@ export function initializeAnalytics(
   originApplication: OriginApplication,
   proxyUrl: string | undefined
 ) {
+  if (isInitialized) {
+    throw new Error('initializeAnalytics called multiple times - is it inside of a React component?')
+  }
+  isInitialized = true
+
   init(
     apiKey,
     /* userId= */ undefined, // User ID should be undefined to let Amplitude default to Device ID
