@@ -3,8 +3,8 @@ import { Identify, identify, init, track } from '@amplitude/analytics-browser'
 import { ApplicationTransport, OriginApplication } from './ApplicationTransport'
 
 export type Options = {
-  // URL of the proxy server
   proxyUrl?: string
+  // If false, does not set user properties on the Amplitude client
   isProductionEnv?: boolean
   commitHash?: string
 }
