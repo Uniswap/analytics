@@ -40,7 +40,7 @@ initializeAnalytics(MY_API_KEY, OriginApplication.INTERFACE, {
     proxyUrl: MY_PROXY_URL
 })
 ```
-Note that an Error is thrown if the client is initialized more than once.
+Note that an `Error` is thrown if the client is initialized more than once.
 
 Before logging an event, make sure to add it under the `EventName` enum in the [@uniswap/analytics-events](https://www.npmjs.com/package/@uniswap/analytics-events) package. To log an analytics event:
 ```js
