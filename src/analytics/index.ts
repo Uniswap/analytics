@@ -3,6 +3,7 @@ import { Identify, identify, init, track } from '@amplitude/analytics-browser'
 import { ApplicationTransport, OriginApplication } from './ApplicationTransport'
 
 export type Options = {
+  // URL of the proxy server
   proxyUrl: string | undefined
   isProductionEnv: boolean | undefined
   commitHash: string | undefined
@@ -19,8 +20,8 @@ export let commitHash
  * member of the organization on Amplitude to view details.
  *
  * @param apiKey API key of the application. Currently not utilized in order to keep keys private.
- * @param proxyUrl URL of the proxy server.
- * @param analyticsOptions Name of the application consuming the package. Used to route events to the correct project.
+ * @param originApplication Name of the application consuming the package. Used to route events to the correct project.
+ * @param options Contains options to be used in the configuration of the package
  */
 export function initializeAnalytics(
   apiKey: string,
