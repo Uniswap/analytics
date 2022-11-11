@@ -2,16 +2,15 @@ import { Identify, identify, init, track } from '@amplitude/analytics-browser'
 
 import { ApplicationTransport, OriginApplication } from './ApplicationTransport'
 
-export type AnalyticsConfig = {
+type AnalyticsConfig = {
   proxyUrl?: string
-  // If false, does not set user properties on the Amplitude client
+  // If false or undefined, does not set user properties on the Amplitude client
   isProductionEnv?: boolean
   commitHash?: string
 }
 
 let isInitialized = false
-let isProductionEnv: boolean
-export let commitHash: string | undefined
+export let analyticsConfig: AnalyticsConfig | undefined
 
 /**
  * Initializes Amplitude with API key for project.
@@ -28,8 +27,7 @@ export function initializeAnalytics(apiKey: string, originApplication: OriginApp
     throw new Error('initializeAnalytics called multiple times - is it inside of a React component?')
   }
   isInitialized = true
-  isProductionEnv = config?.isProductionEnv ?? false
-  commitHash = config?.commitHash
+  analyticsConfig = config
 
   init(
     apiKey,
@@ -74,7 +72,7 @@ class UserModel {
   }
 
   private call(mutate: (event: Identify) => Identify) {
-    if (!isProductionEnv) {
+    if (!analyticsConfig?.isProductionEnv) {
       const log = (_: Identify, method: string) => this.log.bind(this, method)
       mutate(new Proxy(new Identify(), { get: log }))
       return
