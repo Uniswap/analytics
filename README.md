@@ -29,19 +29,27 @@ which in turn uses the [Angular commit message suggestions](https://github.com/a
 ## Documentation
 
 
-The client should be initialized before it is used. To initialize the client, pass in the url of the reverse proxy server:
+The client should be initialized before it is used. To initialize the client, pass in the API key of the application, as well as the name of
+the application. If the application name is not listed under `OriginApplication`, it should be added under the enum. An additional
+configuration object can be passed.
+
 ```js
-import { initializeAnalytics } from '@uniswap/analytics'
+import { initializeAnalytics, OriginApplication } from '@uniswap/analytics'
 
-initializeAnalytics(REVERSE_PROXY_URL)
+initializeAnalytics(MY_API_KEY, OriginApplication.INTERFACE, {
+    proxyUrl: MY_PROXY_URL
+})
 ```
+Note that an `Error` is thrown if the client is initialized more than once.
 
-Before logging an event, make sure to add it under the `EventName` enum. To log an analytics event:
+Before logging an event, make sure to add it under the `EventName` enum in the [@uniswap/analytics-events](https://www.npmjs.com/package/@uniswap/analytics-events) package. To log an analytics event:
 ```js
 import { sendAnalyticsEvent } from '@uniswap/analytics'
-import { EventName } from '@uniswap/analytics-events'
+import { EventName, ElementName } from '@uniswap/analytics-events'
 
-sendAnalyticsEvent(EventName.EXPLORE_BANNER_CLICKED, {})
+sendAnalyticsEvent(EventName.PAGE_CLICKED, {
+    elementName: ElementName.TOP_MENU
+})
 ```
 
 There is also a built in React component that logs an event when it is first mounted. You may use it as a wrapper:

@@ -30,7 +30,7 @@
     "prepack": "yarn run build",
     "lint": "yarn eslint .",
     "release": "semantic-release",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "author": "",
   "engines": {

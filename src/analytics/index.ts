@@ -1,9 +1,16 @@
 import { Identify, identify, init, track } from '@amplitude/analytics-browser'
-import { isProductionEnv } from '../utils/env'
 
 import { ApplicationTransport, OriginApplication } from './ApplicationTransport'
 
+type AnalyticsConfig = {
+  proxyUrl?: string
+  // If false or undefined, does not set user properties on the Amplitude client
+  isProductionEnv?: boolean
+  commitHash?: string
+}
+
 let isInitialized = false
+export let analyticsConfig: AnalyticsConfig | undefined
 
 /**
  * Initializes Amplitude with API key for project.
@@ -12,18 +19,15 @@ let isInitialized = false
  * member of the organization on Amplitude to view details.
  *
  * @param apiKey API key of the application. Currently not utilized in order to keep keys private.
- * @param proxyUrl URL of the proxy server.
  * @param originApplication Name of the application consuming the package. Used to route events to the correct project.
+ * @param options Contains options to be used in the configuration of the package
  */
-export function initializeAnalytics(
-  apiKey: string,
-  originApplication: OriginApplication,
-  proxyUrl: string | undefined
-) {
+export function initializeAnalytics(apiKey: string, originApplication: OriginApplication, config?: AnalyticsConfig) {
   if (isInitialized) {
     throw new Error('initializeAnalytics called multiple times - is it inside of a React component?')
   }
   isInitialized = true
+  analyticsConfig = config
 
   init(
     apiKey,
@@ -31,7 +35,7 @@ export function initializeAnalytics(
     /* options= */
     {
       // Configure the SDK to work with alternate endpoint
-      serverUrl: proxyUrl,
+      serverUrl: config?.proxyUrl,
       // Configure the SDK to set the x-application-origin header
       transportProvider: new ApplicationTransport(originApplication),
       // Disable tracking of private user information by Amplitude
@@ -68,7 +72,7 @@ class UserModel {
   }
 
   private call(mutate: (event: Identify) => Identify) {
-    if (!isProductionEnv()) {
+    if (!analyticsConfig?.isProductionEnv) {
       const log = (_: Identify, method: string) => this.log.bind(this, method)
       mutate(new Proxy(new Identify(), { get: log }))
       return

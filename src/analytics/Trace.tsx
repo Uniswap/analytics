@@ -1,6 +1,6 @@
 import React, { createContext, memo, PropsWithChildren, useContext, useEffect, useMemo } from 'react'
 
-import { sendAnalyticsEvent } from '.'
+import { sendAnalyticsEvent, analyticsConfig } from '.'
 
 const DEFAULT_EVENT = 'PAGE_VIEWED'
 
@@ -61,11 +61,10 @@ export const Trace = memo(
 
     useEffect(() => {
       if (shouldLogImpression) {
-        const commitHash = process.env.REACT_APP_GIT_COMMIT_HASH
         sendAnalyticsEvent(name ?? DEFAULT_EVENT, {
           ...combinedProps,
           ...properties,
-          git_commit_hash: commitHash,
+          git_commit_hash: analyticsConfig?.commitHash,
         })
       }
       // Impressions should only be logged on mount.
