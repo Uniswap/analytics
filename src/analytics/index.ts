@@ -4,14 +4,14 @@ import { ApplicationTransport, OriginApplication } from './ApplicationTransport'
 
 export type Options = {
   // URL of the proxy server
-  proxyUrl: string | undefined
-  isProductionEnv: boolean | undefined
-  commitHash: string | undefined
+  proxyUrl?: string
+  isProductionEnv?: boolean
+  commitHash?: string
 }
 
 let isInitialized = false
-let isProductionEnv = false
-export let commitHash
+let isProductionEnv: boolean
+export let commitHash: string | undefined
 
 /**
  * Initializes Amplitude with API key for project.
@@ -26,7 +26,7 @@ export let commitHash
 export function initializeAnalytics(
   apiKey: string,
   originApplication: OriginApplication,
-  options: Options | undefined
+  options?: Options | undefined
 ) {
   if (isInitialized) {
     throw new Error('initializeAnalytics called multiple times - is it inside of a React component?')
