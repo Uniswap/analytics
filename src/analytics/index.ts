@@ -2,7 +2,7 @@ import { Identify, identify, init, track } from '@amplitude/analytics-browser'
 
 import { ApplicationTransport, OriginApplication } from './ApplicationTransport'
 
-export type Options = {
+export type AnalyticsConfig = {
   proxyUrl?: string
   // If false, does not set user properties on the Amplitude client
   isProductionEnv?: boolean
@@ -23,17 +23,13 @@ export let commitHash: string | undefined
  * @param originApplication Name of the application consuming the package. Used to route events to the correct project.
  * @param options Contains options to be used in the configuration of the package
  */
-export function initializeAnalytics(
-  apiKey: string,
-  originApplication: OriginApplication,
-  options?: Options | undefined
-) {
+export function initializeAnalytics(apiKey: string, originApplication: OriginApplication, config?: AnalyticsConfig) {
   if (isInitialized) {
     throw new Error('initializeAnalytics called multiple times - is it inside of a React component?')
   }
   isInitialized = true
-  isProductionEnv = options?.isProductionEnv ?? false
-  commitHash = options?.commitHash
+  isProductionEnv = config?.isProductionEnv ?? false
+  commitHash = config?.commitHash
 
   init(
     apiKey,
@@ -41,7 +37,7 @@ export function initializeAnalytics(
     /* options= */
     {
       // Configure the SDK to work with alternate endpoint
-      serverUrl: options?.proxyUrl,
+      serverUrl: config?.proxyUrl,
       // Configure the SDK to set the x-application-origin header
       transportProvider: new ApplicationTransport(originApplication),
       // Disable tracking of private user information by Amplitude
