@@ -2,7 +2,7 @@ import React, { createContext, memo, PropsWithChildren, useContext, useEffect, u
 
 import { sendAnalyticsEvent, analyticsConfig } from '.'
 
-const DEFAULT_EVENT = 'PAGE_VIEWED'
+const DEFAULT_EVENT = 'Page Viewed'
 
 export interface ITraceContext {
   // Highest order context: eg Swap or Explore.
