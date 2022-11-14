@@ -61,7 +61,8 @@ export const Trace = memo(
 
     useEffect(() => {
       if (shouldLogImpression) {
-        sendAnalyticsEvent(name ?? DEFAULT_EVENT, {
+        // If an event name is not provided, fallback to the config defaultEventName, otherwise local default
+        sendAnalyticsEvent(name ?? analyticsConfig?.defaultEventName ?? DEFAULT_EVENT, {
           ...combinedProps,
           ...properties,
           git_commit_hash: analyticsConfig?.commitHash,
