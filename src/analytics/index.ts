@@ -7,6 +7,7 @@ type AnalyticsConfig = {
   // If false or undefined, does not set user properties on the Amplitude client
   isProductionEnv?: boolean
   commitHash?: string
+  defaultEventName?: string
 }
 
 let isInitialized = false
