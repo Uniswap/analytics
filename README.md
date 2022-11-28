@@ -26,7 +26,7 @@ When making changes to this package, first ensure your changes are designed as n
 yarn tarball
 ```
 
-To install in the relevant repo, copy the tarball to the root of your project's `package.json` and run the following commands:
+To install in the relevant repo, copy the tarball to the root of your project's `package.json` and run the following commands in your project's root:
 
 ```bash
 # yarn
@@ -36,6 +36,8 @@ yarn add file:uniswap-analytics-dev.tgz
 # npm
 npm install uniswap-analytics-dev.tgz
 ```
+
+Alternatively, you can install with a direct file reference from your local `analytics` repository.
 
 Once you have verified your changes, submit a PR, merge your code, and install the package directly from npm to pick up the official changes.
 
