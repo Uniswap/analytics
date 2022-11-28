@@ -18,6 +18,29 @@ npm i --save @uniswap/analytics
 
 Make sure the environment variable `REACT_APP_STAGING` is set to `false` in production.
 
+## Development
+
+When making changes to this package, first ensure your changes are designed as needed by installing your changes from a tarball. To generate the tarball (with version `0.0.1` to indicate a test version) use the following command:
+
+```bash
+yarn tarball
+```
+
+To install in the relevant repo, copy the tarball to the root of your project's `package.json` and run the following commands in your project's root:
+
+```bash
+# yarn
+yarn cache clean
+yarn add file:uniswap-analytics-dev.tgz
+
+# npm
+npm install uniswap-analytics-dev.tgz
+```
+
+Alternatively, you can install with a direct file reference from your local `analytics` repository.
+
+Once you have verified your changes, submit a PR, merge your code, and install the package directly from npm to pick up the official changes.
+
 ## Release
 
 Releasing is performed manually using the [release](/.github/workflows/release.yaml) Github workflow.
@@ -27,7 +50,6 @@ which in turn uses the [Angular commit message suggestions](https://github.com/a
 
 
 ## Documentation
-
 
 The client should be initialized before it is used. To initialize the client, pass in the API key of the application, as well as the name of
 the application. If the application name is not listed under `OriginApplication`, it should be added under the enum. An additional
@@ -86,10 +108,8 @@ user.set(CUSTOM_USER_PROPERTIES.DARK_MODE, isDarkMode)
 
 This package is used into a few of Uniswap Labs repos:
 
-- [Interface](https://github.com/Uniswap/widgets-demo/tree/nextjs)
+- [Interface](https://github.com/Uniswap/interface)
 - [Docs](https://github.com/Uniswap/docs)
-
-
 
 
 ## Legal notice
