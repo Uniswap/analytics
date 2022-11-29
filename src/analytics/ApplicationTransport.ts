@@ -4,6 +4,7 @@ import { Payload, Response, Transport } from '@amplitude/analytics-types'
 export enum OriginApplication {
   DOCS = 'docs',
   INTERFACE = 'interface',
+  ORG = 'org',
 }
 
 /**
