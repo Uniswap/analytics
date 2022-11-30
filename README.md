@@ -64,7 +64,7 @@ initializeAnalytics(MY_API_KEY, OriginApplication.INTERFACE, {
     proxyUrl: MY_PROXY_URL
 })
 ```
-Note that an `Error` is thrown if the client is initialized more than once.
+Note that an `Error` is thrown if the client is initialized more than once or if an invalid configuration object is provided.
 
 #### Configuration Options
 
