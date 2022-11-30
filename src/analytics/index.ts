@@ -31,7 +31,9 @@ export function initializeAnalytics(apiKey: string, originApplication: OriginApp
   }
 
   if (config?.debug && config.isProductionEnv) {
-    throw new Error(`It looks like you're trying to initialize analytics in debug mode for production. Please disable debug mode or the production environment`)
+    throw new Error(
+      `It looks like you're trying to initialize analytics in debug mode for production. Please disable debug mode or the production environment`
+    )
   }
 
   isInitialized = true
@@ -65,8 +67,8 @@ export function sendAnalyticsEvent(eventName: string, eventProperties?: Record<s
   if (analyticsConfig?.debug) {
     console.log({
       eventName,
-      eventProperties: { ...eventProperties, origin }
-    });
+      eventProperties: { ...eventProperties, origin },
+    })
   }
 
   track(eventName, { ...eventProperties, origin })
