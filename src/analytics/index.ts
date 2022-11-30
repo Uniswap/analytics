@@ -8,6 +8,8 @@ type AnalyticsConfig = {
   isProductionEnv?: boolean
   commitHash?: string
   defaultEventName?: string
+  // When enabled, console log events before sending to amplitude
+  debug?: boolean
 }
 
 let isInitialized = false
@@ -54,6 +56,13 @@ export function initializeAnalytics(apiKey: string, originApplication: OriginApp
 /** Sends an event to Amplitude. */
 export function sendAnalyticsEvent(eventName: string, eventProperties?: Record<string, unknown>) {
   const origin = window.location.origin
+
+  if (analyticsConfig?.debug) {
+    console.log({
+      eventName,
+      eventProperties: { ...eventProperties, origin }
+    });
+  }
 
   track(eventName, { ...eventProperties, origin })
 }
