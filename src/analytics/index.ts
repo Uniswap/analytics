@@ -4,10 +4,10 @@ import { ApplicationTransport, OriginApplication } from './ApplicationTransport'
 
 type AnalyticsConfig = {
   proxyUrl?: string
-  // If false or undefined, does not set user properties on the Amplitude client
-  isProductionEnv?: boolean
   commitHash?: string
   defaultEventName?: string
+  // If false or undefined, does not set user properties on the Amplitude client
+  isProductionEnv?: boolean
   // When enabled, console log events before sending to amplitude
   debug?: boolean
 }
@@ -29,6 +29,11 @@ export function initializeAnalytics(apiKey: string, originApplication: OriginApp
   if (isInitialized) {
     throw new Error('initializeAnalytics called multiple times - is it inside of a React component?')
   }
+
+  if (config?.debug && config.isProductionEnv) {
+    throw new Error(`It looks like you're trying to initialize analytics in debug mode for production. Please disable debug mode or the production environment`)
+  }
+
   isInitialized = true
   analyticsConfig = config
 

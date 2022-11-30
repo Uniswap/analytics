@@ -51,6 +51,8 @@ which in turn uses the [Angular commit message suggestions](https://github.com/a
 
 ## Documentation
 
+### Initializing Analytics
+
 The client should be initialized before it is used. To initialize the client, pass in the API key of the application, as well as the name of
 the application. If the application name is not listed under `OriginApplication`, it should be added under the enum. An additional
 configuration object can be passed.
@@ -64,6 +66,18 @@ initializeAnalytics(MY_API_KEY, OriginApplication.INTERFACE, {
 ```
 Note that an `Error` is thrown if the client is initialized more than once.
 
+#### Configuration Options
+
+| Option             | Type    | Description                                                                                  |
+| :--------------    | :------ | :------------------------------------------------------------------------------------------- |
+| `proxyUrl`         | string  | The Amplitude URL to send events to.                                                         |
+| `defaultEventName` | string  | When an event name is not provided, use the provided default. Defaults to `Page Viewed`.     |
+| `commitHash`       | string  | The git commit hash to send with Trace events only. Does not send by default on raw events.  |
+| `isProductionEnv`  | boolean | When not set to true, user properties are not set on the Amplitude client.                   |
+| `debug`            | boolean | When enabled, logs events to the console. Cannot be enabled while `isProductionEnv` is true. |
+
+### Logging Events Directly
+
 Before logging an event, make sure to add it under the `EventName` enum in the [@uniswap/analytics-events](https://www.npmjs.com/package/@uniswap/analytics-events) package. To log an analytics event:
 ```js
 import { sendAnalyticsEvent } from '@uniswap/analytics'
@@ -73,6 +87,8 @@ sendAnalyticsEvent(EventName.PAGE_CLICKED, {
     elementName: ElementName.TOP_MENU
 })
 ```
+
+### Using the Trace Component
 
 There is also a built in React component that logs an event when it is first mounted. You may use it as a wrapper:
 ```js
