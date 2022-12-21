@@ -1,8 +1,9 @@
+import { EventName } from '@uniswap/analytics-events'
 import React, { createContext, memo, PropsWithChildren, useContext, useEffect, useMemo } from 'react'
 
 import { sendAnalyticsEvent, analyticsConfig } from '.'
 
-const DEFAULT_EVENT = 'Page Viewed'
+const DEFAULT_EVENT = EventName.PAGE_VIEWED
 
 export interface ITraceContext {
   // Highest order context: eg Swap or Explore.
@@ -28,7 +29,7 @@ export function useTrace(trace?: ITraceContext): ITraceContext {
 
 type TraceProps = {
   shouldLogImpression?: boolean // whether to log impression on mount
-  name?: string
+  name?: EventName
   properties?: Record<string, unknown>
 } & ITraceContext
 

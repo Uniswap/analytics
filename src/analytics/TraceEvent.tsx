@@ -1,3 +1,4 @@
+import type { EventName } from '@uniswap/analytics-events'
 import React, { Children, cloneElement, isValidElement, memo, PropsWithChildren, SyntheticEvent } from 'react'
 
 import { sendAnalyticsEvent } from '.'
@@ -5,7 +6,7 @@ import { ITraceContext, Trace, TraceContext } from './Trace'
 
 type TraceEventProps = {
   events: string[]
-  name: string
+  name: EventName
   properties?: Record<string, unknown>
   shouldLogImpression?: boolean
 } & ITraceContext
@@ -52,7 +53,7 @@ function getEventHandlers(
   child: React.ReactElement,
   traceContext: ITraceContext,
   events: string[],
-  name: string,
+  name: EventName,
   properties?: Record<string, unknown>,
   shouldLogImpression = true
 ) {
