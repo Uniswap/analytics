@@ -1,4 +1,12 @@
-import { Identify, identify, init, track } from '@amplitude/analytics-browser'
+import {
+  Identify,
+  identify,
+  init,
+  track,
+  getDeviceId as getAmplitudeDeviceId,
+  getUserId as getAmplitudeUserId,
+  getSessionId as getAmplitudeSessionId,
+} from '@amplitude/analytics-browser'
 
 import { ApplicationTransport, OriginApplication } from './ApplicationTransport'
 
@@ -72,6 +80,18 @@ export function sendAnalyticsEvent(eventName: string, eventProperties?: Record<s
   }
 
   track(eventName, { ...eventProperties, origin })
+}
+
+export function getDeviceId() {
+  return getAmplitudeDeviceId()
+}
+
+export function getUserId() {
+  return getAmplitudeUserId()
+}
+
+export function getSessionId() {
+  return getAmplitudeSessionId()
 }
 
 type UserValue = string | number | boolean | string[] | number[]
