@@ -36,14 +36,14 @@ export let analyticsConfig: AnalyticsConfig | undefined
 export function initializeAnalytics(apiKey: string, originApplication: OriginApplication, config?: AnalyticsConfig) {
   // Non-production environments may use hot-reloading, which will re-initialize but should be ignored.
   if (!config?.isProductionEnv && isInitialized) {
-      return
+    return
   }
 
   if (config?.isProductionEnv) {
     if (isInitialized) {
       throw new Error('initializeAnalytics called multiple times. Ensure it is outside of a React component.')
     }
-    
+
     if (config.debug) {
       throw new Error(
         `It looks like you're trying to initialize analytics in debug mode for production. Disable debug mode or use a non-production environment.`
