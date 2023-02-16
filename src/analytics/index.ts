@@ -50,7 +50,6 @@ export function initializeAnalytics(apiKey: string, originApplication: OriginApp
       )
     }
   }
-  }
 
   isInitialized = true
   analyticsConfig = config
