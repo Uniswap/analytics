@@ -1992,10 +1992,10 @@
     "@typescript-eslint/types" "5.42.0"
     eslint-visitor-keys "^3.3.0"
 
-"@uniswap/analytics-events@^1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@uniswap/analytics-events/-/analytics-events-1.6.0.tgz#378d08f803170ca408f0c39b446cc025f3acbc37"
-  integrity sha512-z04okZb0J0dyAm/zie7JSJcPCTjsPYCDLCSfSjsG15mXnub0Q/iWTSiVI4lDiNj0/SUiMVIEQiINPuXSnS9k5w==
+"@uniswap/analytics-events@>=1":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@uniswap/analytics-events/-/analytics-events-2.5.0.tgz#0956231afede2ed04f051d0f54c11ac34ea7df25"
+  integrity sha512-DFI3awVgVaO/gthl9lQ3jfJu/lmAfJCXeuUcfzGURFyr3NjOxpdkDq68OMGKmKvTceofx3V1qCMG0lrXuDGCog==
 
 JSONStream@^1.0.4:
   version "1.3.5"
