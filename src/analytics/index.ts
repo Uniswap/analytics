@@ -1,4 +1,12 @@
-import { Identify, identify, init, track } from '@amplitude/analytics-browser'
+import {
+  Identify,
+  identify,
+  init,
+  track,
+  getDeviceId as getAmplitudeDeviceId,
+  getUserId as getAmplitudeUserId,
+  getSessionId as getAmplitudeSessionId,
+} from '@amplitude/analytics-browser'
 import type { EventName } from '@uniswap/analytics-events'
 
 import { ApplicationTransport, OriginApplication } from './ApplicationTransport'
@@ -27,14 +35,21 @@ export let analyticsConfig: AnalyticsConfig | undefined
  * @param options Contains options to be used in the configuration of the package
  */
 export function initializeAnalytics(apiKey: string, originApplication: OriginApplication, config?: AnalyticsConfig) {
-  if (isInitialized) {
-    throw new Error('initializeAnalytics called multiple times - is it inside of a React component?')
+  // Non-production environments may use hot-reloading, which will re-initialize but should be ignored.
+  if (!config?.isProductionEnv && isInitialized) {
+    return
   }
 
-  if (config?.debug && config.isProductionEnv) {
-    throw new Error(
-      `It looks like you're trying to initialize analytics in debug mode for production. Please disable debug mode or the production environment`
-    )
+  if (config?.isProductionEnv) {
+    if (isInitialized) {
+      throw new Error('initializeAnalytics called multiple times. Ensure it is outside of a React component.')
+    }
+
+    if (config.debug) {
+      throw new Error(
+        `It looks like you're trying to initialize analytics in debug mode for production. Disable debug mode or use a non-production environment.`
+      )
+    }
   }
 
   isInitialized = true
@@ -73,6 +88,18 @@ export function sendAnalyticsEvent(eventName: EventName, eventProperties?: Recor
   }
 
   track(eventName, { ...eventProperties, origin })
+}
+
+export function getDeviceId() {
+  return getAmplitudeDeviceId()
+}
+
+export function getUserId() {
+  return getAmplitudeUserId()
+}
+
+export function getSessionId() {
+  return getAmplitudeSessionId()
 }
 
 type UserValue = string | number | boolean | string[] | number[]

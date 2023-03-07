@@ -1,6 +1,7 @@
 {
   "name": "@uniswap/analytics",
   "description": "Uniswap analytics",
+  "repository": "https://github.com/Uniswap/analytics",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
