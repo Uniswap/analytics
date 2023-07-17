@@ -33,7 +33,7 @@ type TraceProps = {
 } & ITraceContext
 
 /**
- * Sends an analytics event on mount (if shouldLogImpression is set),
+ * Sends an analytics event on mount or if `shouldLogImpression` toggles,
  * and propagates the context to child traces.
  *
  * It defaults to logging an EventName.PAGE_VIEWED if no `name` is provided.
@@ -68,9 +68,10 @@ export const Trace = memo(
           git_commit_hash: analyticsConfig?.commitHash,
         })
       }
-      // Impressions should only be logged on mount.
+      // Impressions should only be logged on mount or if `shouldLogImpression` toggles
+      // (ie if the component becomes "viewed"), but not if/when other deps update.
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [shouldLogImpression])
 
     return <TraceContext.Provider value={combinedProps}>{children}</TraceContext.Provider>
   }
