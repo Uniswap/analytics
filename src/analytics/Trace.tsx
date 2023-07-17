@@ -68,9 +68,8 @@ export const Trace = memo(
           git_commit_hash: analyticsConfig?.commitHash,
         })
       }
-      // Impressions should only be logged on mount.
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [shouldLogImpression])
 
     return <TraceContext.Provider value={combinedProps}>{children}</TraceContext.Provider>
   }
