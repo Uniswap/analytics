@@ -33,7 +33,7 @@ type TraceProps = {
 } & ITraceContext
 
 /**
- * Sends an analytics event on mount (if shouldLogImpression is set),
+ * Sends an analytics event if shouldLogImpression is set to  true,
  * and propagates the context to child traces.
  *
  * It defaults to logging an EventName.PAGE_VIEWED if no `name` is provided.
