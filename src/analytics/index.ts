@@ -7,13 +7,14 @@ import {
   getUserId as getAmplitudeUserId,
   getSessionId as getAmplitudeSessionId,
 } from '@amplitude/analytics-browser'
+import type { EventName } from '@uniswap/analytics-events'
 
 import { ApplicationTransport, OriginApplication } from './ApplicationTransport'
 
 type AnalyticsConfig = {
   proxyUrl?: string
   commitHash?: string
-  defaultEventName?: string
+  defaultEventName?: EventName
   // If false or undefined, does not set user properties on the Amplitude client
   isProductionEnv?: boolean
   // When enabled, console log events before sending to amplitude
@@ -76,7 +77,7 @@ export function initializeAnalytics(apiKey: string, originApplication: OriginApp
 }
 
 /** Sends an event to Amplitude. */
-export function sendAnalyticsEvent(eventName: string, eventProperties?: Record<string, unknown>) {
+export function sendAnalyticsEvent(eventName: EventName, eventProperties?: Record<string, unknown>) {
   const origin = window.location.origin
 
   if (analyticsConfig?.debug) {
