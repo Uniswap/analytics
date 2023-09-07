@@ -2,6 +2,7 @@ import { BaseTransport } from '@amplitude/analytics-core'
 import { Payload, Response, Transport } from '@amplitude/analytics-types'
 
 export enum OriginApplication {
+  BLOG = 'blog',
   DOCS = 'docs',
   INTERFACE = 'interface',
   MOBILE = 'mobile-analytics-uniswap',
