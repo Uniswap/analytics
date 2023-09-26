@@ -111,17 +111,21 @@ type UserValue = string | number | boolean | string[] | number[]
  * for details.
  */
 class UserModel {
+  public country: string | undefined
+
   private log(method: string, ...parameters: unknown[]) {
     console.debug(`[amplitude(Identify)]: ${method}(${parameters})`)
   }
 
-  private call(mutate: (event: Identify) => Identify) {
+  private async call(mutate: (event: Identify) => Identify) {
     if (!analyticsConfig?.isProductionEnv) {
       const log = (_: Identify, method: string) => this.log.bind(this, method)
       mutate(new Proxy(new Identify(), { get: log }))
       return
     }
-    identify(mutate(new Identify()))
+
+    const result = await identify(mutate(new Identify())).promise
+    this.country = result.event.country
   }
 
   set(key: string, value: UserValue) {
