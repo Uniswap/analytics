@@ -18,6 +18,7 @@ type AnalyticsConfig = {
   isProductionEnv?: boolean
   // When enabled, console log events before sending to amplitude
   debug?: boolean
+  setOriginCountry?: (country: string) => void
 }
 
 let isInitialized = false
@@ -33,12 +34,7 @@ export let analyticsConfig: AnalyticsConfig | undefined
  * @param originApplication Name of the application consuming the package. Used to route events to the correct project.
  * @param options Contains options to be used in the configuration of the package
  */
-export function initializeAnalytics(
-  apiKey: string,
-  originApplication: OriginApplication,
-  setOriginCountry: (string) => void,
-  config?: AnalyticsConfig
-) {
+export function initializeAnalytics(apiKey: string, originApplication: OriginApplication, config?: AnalyticsConfig) {
   // Non-production environments may use hot-reloading, which will re-initialize but should be ignored.
   if (!config?.isProductionEnv && isInitialized) {
     return
@@ -67,7 +63,7 @@ export function initializeAnalytics(
       // Configure the SDK to work with alternate endpoint
       serverUrl: config?.proxyUrl,
       // Configure the SDK to set the x-application-origin header
-      transportProvider: new ApplicationTransport(originApplication, setOriginCountry),
+      transportProvider: new ApplicationTransport(originApplication, config?.setOriginCountry),
       // Disable tracking of private user information by Amplitude
       trackingOptions: {
         ipAddress: false,
