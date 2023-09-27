@@ -16,7 +16,7 @@ export enum OriginApplication {
  * See example here: https://github.com/amplitude/Amplitude-TypeScript/blob/main/packages/analytics-client-common/src/transports/fetch.ts
  */
 export class ApplicationTransport extends BaseTransport implements Transport {
-  constructor(private originApplication: OriginApplication) {
+  constructor(private originApplication: OriginApplication, public setOriginCountry: (country: string) => void) {
     super()
 
     /* istanbul ignore if */
