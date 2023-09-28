@@ -16,7 +16,9 @@ export enum OriginApplication {
  * See example here: https://github.com/amplitude/Amplitude-TypeScript/blob/main/packages/analytics-client-common/src/transports/fetch.ts
  */
 export class ApplicationTransport extends BaseTransport implements Transport {
-  constructor(private originApplication: OriginApplication) {
+  private shouldReportOriginCountry = true
+
+  constructor(private originApplication: OriginApplication, private reportOriginCountry?: (country: string) => void) {
     super()
 
     /* istanbul ignore if */
@@ -38,6 +40,12 @@ export class ApplicationTransport extends BaseTransport implements Transport {
     }
     const response = await fetch(serverUrl, request)
     const responseJSON: Record<string, unknown> = await response.json()
+
+    if (response.headers.has('Origin-Country') && this.shouldReportOriginCountry) {
+      this.reportOriginCountry?.(response.headers.get('Origin-Country') as string)
+      this.shouldReportOriginCountry = false
+    }
+
     return this.buildResponse(responseJSON)
   }
 }

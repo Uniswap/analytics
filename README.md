@@ -68,13 +68,14 @@ Note that an `Error` is thrown if the client is initialized more than once or if
 
 #### Configuration Options
 
-| Option             | Type    | Description                                                                                  |
-| :--------------    | :------ | :------------------------------------------------------------------------------------------- |
-| `proxyUrl`         | string  | The Amplitude URL to send events to.                                                         |
-| `defaultEventName` | string  | When an event name is not provided, use the provided default. Defaults to `Page Viewed`.     |
-| `commitHash`       | string  | The git commit hash to send with Trace events only. Does not send by default on raw events.  |
-| `isProductionEnv`  | boolean | When not set to true, user properties are not set on the Amplitude client.                   |
-| `debug`            | boolean | When enabled, logs events to the console. Cannot be enabled while `isProductionEnv` is true. |
+| Option             | Type             | Description                                                                                  |
+| :----------------- | :--------------- | :------------------------------------------------------------------------------------------- |
+| `proxyUrl`         | string           | The Amplitude URL to send events to.                                                         |
+| `defaultEventName` | string           | When an event name is not provided, use the provided default. Defaults to `Page Viewed`.     |
+| `commitHash`       | string           | The git commit hash to send with Trace events only. Does not send by default on raw events.  |
+| `isProductionEnv`  | boolean          | When not set to true, user properties are not set on the Amplitude client.                   |
+| `debug`            | boolean          | When enabled, logs events to the console. Cannot be enabled while `isProductionEnv` is true. |
+| `setOriginCountry` | (string) => void | Executes on the first `send` function that is called. The `Origin-Country` response header is passed as the argument. |
 
 ### Logging Events Directly
 
