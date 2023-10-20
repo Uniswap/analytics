@@ -3,6 +3,7 @@ import { Payload, Response, Transport } from '@amplitude/analytics-types'
 
 export enum OriginApplication {
   DOCS = 'docs',
+  INFO = 'info',
   INTERFACE = 'interface',
   MOBILE = 'mobile-analytics-uniswap',
   ORG = 'org',
