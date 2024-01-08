@@ -9,3 +9,4 @@ export {
   user,
 } from './analytics/index.js'
 export { OriginApplication } from './analytics/ApplicationTransport.js'
+export { ANONYMOUS_DEVICE_ID } from './analytics/constants.js'
