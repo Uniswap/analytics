@@ -81,7 +81,7 @@ export function sendAnalyticsEvent(eventName: string, eventProperties?: Record<s
   const origin = window.location.origin
 
   if (analyticsConfig?.debug) {
-    console.log({
+    console.debug({
       eventName,
       eventProperties: { ...eventProperties, origin },
     })
