@@ -11,7 +11,8 @@ on:
 jobs:
   release:
     name: Release
-    runs-on: ubuntu-latest
+    runs-on:
+      group: npm-deploy
     environment:
       name: release
     steps:
@@ -43,7 +44,7 @@ jobs:
           export-env: true
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          NPM_TOKEN: op://npm-deploy/npm-token/secret
+          NPM_TOKEN: op://npm-deploy/npm-runner-token/secret
           GITHUB_TOKEN: op://npm-deploy/GITHUB_TOKEN/token
 
       - name: Release
