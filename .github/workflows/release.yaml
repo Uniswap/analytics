@@ -17,6 +17,7 @@ jobs:
       name: release
     permissions:
       id-token: write
+      contents: write 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -47,12 +48,11 @@ jobs:
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           NPM_TOKEN: op://npm-deploy/npm-runner-token/secret
-          GITHUB_TOKEN: op://npm-deploy/GITHUB_TOKEN/token
 
       - name: Release
         env:
           NPM_CONFIG_USERCONFIG: /dev/null
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ env.NPM_TOKEN }}
         run: yarn release --dry-run=${{ inputs.dry_run }}
         if: success()
