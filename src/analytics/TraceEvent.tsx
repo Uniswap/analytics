@@ -1,7 +1,7 @@
 import React, { Children, cloneElement, isValidElement, memo, PropsWithChildren, SyntheticEvent } from 'react'
 
-import { sendAnalyticsEvent } from '.'
-import { ITraceContext, Trace, TraceContext } from './Trace'
+import { sendAnalyticsEvent } from './index.js'
+import { ITraceContext, Trace, TraceContext } from './Trace.js'
 
 type TraceEventProps = {
   events: string[]

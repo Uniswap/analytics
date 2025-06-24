@@ -8,7 +8,7 @@ import {
   getSessionId as getAmplitudeSessionId,
 } from '@amplitude/analytics-browser'
 
-import { ApplicationTransport, OriginApplication } from './ApplicationTransport'
+import { ApplicationTransport, OriginApplication } from './ApplicationTransport.js'
 
 type AnalyticsConfig = {
   proxyUrl?: string
