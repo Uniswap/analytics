@@ -1,6 +1,6 @@
 import React, { createContext, memo, PropsWithChildren, useContext, useEffect, useMemo } from 'react'
 
-import { sendAnalyticsEvent, analyticsConfig } from '.'
+import { sendAnalyticsEvent, analyticsConfig } from './index.js'
 
 const DEFAULT_EVENT = 'Page Viewed'
 
